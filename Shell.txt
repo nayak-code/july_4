@@ -1,0 +1,368 @@
+WRITE A PROGRAM FOR ADDITION,SUBSTRACTION,MULTIPLICATION......
+
+[nyk@localhost ~]$ vim con1.sh
+[nyk@localhost ~]$ chmod a+x con1.sh
+[nyk@localhost ~]$ ./con1.sh
+Enter a value1:20 
+Enter a value2:30
+Sum of 20 and 30 is : 50
+Substraction of 20 - 30 is : -10
+Multiplication of 20 and 30 is : 600
+[nyk@localhost ~]$ cat con1.sh
+#!/bin/sh
+#Example of operators
+echo -n "Enter a value1:"
+read a
+echo -n "Enter a value2:"
+read b
+c=`expr $a + $b`
+echo "Sum of $a and $b is : $c"
+c=`expr $a - $b`
+echo "Substraction of $a - $b is : $c"
+c=`expr $a \* $b`
+echo "Multiplication of $a and $b is : $c"
+
+@COPY ONE FILE TO ANOTHER......
+
+nyk@localhost ~]$ vim con2.sh
+[nyk@localhost ~]$ cat con2.sh
+#!/bin/sh
+#Copy one file to another
+echo -n "Enter source and target file names:"
+read source target
+if cp -i $source $target
+then
+echo "File copied successfully"
+fi
+[nyk@localhost ~]$ chmod a+x con2.sh
+[nyk@localhost ~]$ ./con2.sh
+Enter source and target file names:emp
+cp: missing destination file operand after 'emp'
+Try 'cp --help' for more information.
+[nyk@localhost ~]$ ./con2.sh
+Enter source and target file names:emp emp1
+File copied successfully
+[nyk@localhost ~]$ cat emp1
+h               j                       k        
+6               8                       9
+
+@TEST IT IS FILE OR NOT...
+
+[nyk@localhost ~]$ vim test1.sh
+[nyk@localhost ~]$ cat test1.sh
+#!/bin/sh
+#File test commands 
+echo "Enter a file name:"
+read fname
+if [ -f $fname ]
+then
+echo "You indeed entered a file name"
+else 
+echo "What you entered is not a file"
+fi 
+[nyk@localhost ~]$ chmod a+x test1.sh
+[nyk@localhost ~]$ ./test.sh
+bash: ./test.sh: No such file or directory
+[nyk@localhost ~]$ ./test1.sh
+Enter a file name:
+emp
+You indeed entered a file name
+[nyk@localhost ~]$ ./test1.sh
+Enter a file name:
+aws-d
+What you entered is not a file
+
+@WRITE PERMISSION TO A USER OR NOT....
+
+[nyk@localhost ~]$ vim test2.sh
+[nyk@localhost ~]$ chmod a+x test2.sh
+[nyk@localhost ~]$ ./test2.sh
+Enter a file name:
+temp
+No write permission of temp
+[nyk@localhost ~]$ cat test2.sh
+#!/bin/sh
+#Check whether the user has a write permission to a file
+echo "Enter a file name:"
+read fname
+if [ -w $fname ]
+then
+echo "Type matter to append.To stop type ctrl+c"
+cat>>$fname
+else
+echo "No write permission of $fname"
+fi
+:wq!
+
+@TEST WHETHER IT IS FILE OR DIRECTOTY.....
+
+nyk@localhost ~]$ vim test3.sh
+[nyk@localhost ~]$ cat test3.sh
+#!/bin/sh
+#File test example
+echo "Enter a file name:"
+read fname
+if [ -f $fname ]
+then
+echo "$fname is a file"
+elif [ -d $fname ]
+then
+echo "$fname is a directory"
+else
+echo "$fname is not a file or a directory"
+fi
+
+[nyk@localhost ~]$ chmod a+x test3.sh
+[nyk@localhost ~]$ ./test3.sh
+Enter a file name:
+Music
+Music is a directory
+[nyk@localhost ~]$ ./test3.sh
+Enter a file name:
+emp
+emp is a file
+[nyk@localhost ~]$ ./test3.sh
+Enter a file name:
+adv
+adv is not a file or a directory
+[nyk@localhost ~]$ 
+
+
+@STRING TEST,,, CHECK LAST COMMAND IS SUCCESS OR FAIL..
+
+[nyk@localhost ~]$ vim test4.sh
+[nyk@localhost ~]$ cat test4.sh
+#!/bin/sh
+#String test
+String1=Good
+String2=Bad
+String3=
+
+[ $String1 = $String2 ]
+echo $?
+[ $String1!= $String ]
+echo $?
+[ -n "$String1" ]
+echo $?
+[ -z "$String3" ]
+echo $?
+[ "$String3" ]
+echo $?
+
+[nyk@localhost ~]$ chmod a+x test4.sh
+[nyk@localhost ~]$ ./test4.sh
+1
+0
+0
+0
+1
+
+
+@check packet transfer or ping to google,, command success or fail.......
+
+[nyk@localhost ~]$ vim test5.sh
+[nyk@localhost ~]$ cat test5.sh
+#!/bin/sh
+Host="google.com"
+ping -c 3 $Host
+if [ $? -ne "0" ]
+then
+echo "$Host  Unreachable"
+exit1
+fi
+
+[nyk@localhost ~]$ chmod a+x test5.sh
+[nyk@localhost ~]$ ./test5.sh
+PING google.com (172.217.167.174) 56(84) bytes of data.
+64 bytes from bom12s01-in-f14.1e100.net (172.217.167.174): icmp_seq=1 ttl=128 time=59.3 ms
+64 bytes from bom12s01-in-f14.1e100.net (172.217.167.174): icmp_seq=2 ttl=128 time=24.3 ms
+64 bytes from bom12s01-in-f14.1e100.net (172.217.167.174): icmp_seq=3 ttl=128 time=26.2 ms
+
+--- google.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 7ms
+rtt min/avg/max/mdev = 24.331/36.594/59.258/16.044 ms
+
+@TEST OF FOR LOOP COMMAND....
+
+[nyk@localhost shell_script]$ vim for1.sh
+[nyk@localhost shell_script]$ cat for1.sh
+#!/bin/sh
+#Example of for loop
+for word in A High On A Hill
+do
+echo $word
+done
+[nyk@localhost shell_script]$ chmod a+x for1.sh
+[nyk@localhost shell_script]$ ./for1.sh
+A
+High
+On
+A
+Hill
+
+
+@FOR LOOP CAN READ CONTROL VARIABLE.....
+
+[nyk@localhost shell_script]$ vim for.sh
+[nyk@localhost shell_script]$ cat for.sh
+#!/bin/sh
+#Example of for loop
+name="India Is A Great Country"
+for word in $name
+do
+echo $word
+done
+[nyk@localhost shell_script]$ chmod a+x for.sh
+[nyk@localhost shell_script]$ ./for.sh
+India
+Is
+A
+Great
+Country
+
+
+@FOR LOOP CAN READ COMMAND OUTPUT....
+
+[nyk@localhost shell_script]$ vim for3.sh
+[nyk@localhost shell_script]$ cat for3.sh
+#!/bin/sh
+#Example of for loop
+for word in `date`
+do
+echo $word
+done
+[nyk@localhost shell_script]$ date
+Fri Dec 13 16:40:06 IST 2019
+[nyk@localhost shell_script]$ ./for3.sh
+bash: ./for3.sh: Permission denied
+[nyk@localhost shell_script]$ chmod a+x for3.sh
+[nyk@localhost shell_script]$ ./for3.sh
+Fri
+Dec
+13
+16:40:30
+IST
+2019
+
+
+@SHOWS ONE FILE'S DATA  IN COLUMN IN FOR LOOP....
+
+[nyk@localhost ~]$ vim for8.sh
+[nyk@localhost ~]$ cat for8.sh
+#!/bin/sh
+#Example of for loop
+for word in `cat emp`
+do
+echo $word
+done
+[nyk@localhost ~]$ chmod +x for8.sh
+[nyk@localhost ~]$ ./for8.sh
+h
+j
+k
+6
+8
+9
+[nyk@localhost ~]$ 
+
+
+
+@FOR LOOP CAN READ META CHARACTERS.....
+
+[nyk@localhost ~]$ vim for2.sh
+[nyk@localhost ~]$ cat for2.sh
+#!/bin/sh
+#Example of for loop
+for word in `ls ???`
+do
+echo $word
+done
+
+[nyk@localhost ~]$ chmod +x for2.sh
+[nyk@localhost ~]$ ./for2.sh
+emp
+tmp
+
+-------------------
+-------------------
+COMMAND LINE ARGUMENT /OR/ POSITIONAL PARAMETERS......
+>THE SHELL RESERVES SOME VARIABLES NAMES FOR ITS USE. $1 - $9 ARE NINE SHELL VARIABLES CALLED POSITIONAL PARAMETER OR COMMAND LINE ARGUMENT.
+
+> $1 : FIRST PARAMETER VALUE
+> $2 : SECOND PARAMETER VALUE
+.
+.
+.
+> $9 : LAST PARAMETER VALUE
+
+
+@COPYING FROM ONE FILE TO ANOTHER...
+
+nyk@localhost shell_script]$ vim pos1.sh
+[nyk@localhost shell_script]$ cat pos1.sh
+#!/bin/sh
+#Example of positional parameters
+#Copying one file to another 
+
+echo "copying from $1 to $2"
+cp -i $1 $2 
+echo "successfully copied from $1 to $2"
+echo "content of $2"
+cat $2
+[nyk@localhost shell_script]$ chmod +x pos1.sh
+[nyk@localhost shell_script]$ ./pos1.sh 
+copying from  to 
+cp: missing file operand
+Try 'cp --help' for more information.
+successfully copied from  to 
+content of 
+
+[nyk@localhost shell_script]$ ls
+for1.sh  for2.sh  for3.sh  for9.sh  for.sh  pos1.sh  until.sh  while.sh
+[nyk@localhost shell_script]$ ./pos1.sh for.sh las
+copying from for.sh to las
+successfully copied from for.sh to las
+content of las
+#!/bin/sh
+#Example of for loop
+name="India Is A Great Country"
+for word in $name
+do
+echo $word
+done
+[nyk@localhost shell_script]$ 
+
+
+@GIVE EXECUTE PERMISSION TO A FILE IN POSITIONAL PARAMETER.....
+
+nyk@localhost shell_script]$ vim pos2.sh
+[nyk@localhost shell_script]$ cat pos2.sh
+#!/bin/sh
+#File Executable Permissions
+echo "my current $1 file permission"
+ls -l $1
+echo "setup executable permissions of $1"
+chmod a+x $1
+echo "successfully setup execute permissions of $1"
+echo "current $1 file permissions"
+ls -l $1
+
+[nyk@localhost shell_script]$ chmod +x pos2.sh
+[nyk@localhost shell_script]$ ./pos2.sh las
+my current las file permission
+-rwxrwxr-x. 1 nyk nyk 100 Dec 13 21:35 las
+setup executable permissions of las
+successfully setup execute permissions of las
+current las file permissions
+-rwxrwxr-x. 1 nyk nyk 100 Dec 13 21:35 las
+[nyk@localhost shell_script]$ 
+
+
+
+
+
+
+
+
+
+
