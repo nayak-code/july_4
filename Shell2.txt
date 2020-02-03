@@ -1,0 +1,137 @@
+WRITE A PROGRAM FOR ADDITION,SUBSTRACTION,MULTIPLICATION......
+
+[nyk@localhost ~]$ vim con1.sh
+[nyk@localhost ~]$ chmod a+x con1.sh
+[nyk@localhost ~]$ ./con1.sh
+Enter a value1:20 
+Enter a value2:30
+Sum of 20 and 30 is : 50
+Substraction of 20 - 30 is : -10
+Multiplication of 20 and 30 is : 600
+[nyk@localhost ~]$ cat con1.sh
+#!/bin/sh
+#Example of operators
+echo -n "Enter a value1:"
+read a
+echo -n "Enter a value2:"
+read b
+c=`expr $a + $b`
+echo "Sum of $a and $b is : $c"
+c=`expr $a - $b`
+echo "Substraction of $a - $b is : $c"
+c=`expr $a \* $b`
+echo "Multiplication of $a and $b is : $c"
+
+@COPY ONE FILE TO ANOTHER......
+
+nyk@localhost ~]$ vim con2.sh
+[nyk@localhost ~]$ cat con2.sh
+#!/bin/sh
+#Copy one file to another
+echo -n "Enter source and target file names:"
+read source target
+if cp -i $source $target
+then
+echo "File copied successfully"
+fi
+[nyk@localhost ~]$ chmod a+x con2.sh
+[nyk@localhost ~]$ ./con2.sh
+Enter source and target file names:emp
+cp: missing destination file operand after 'emp'
+Try 'cp --help' for more information.
+[nyk@localhost ~]$ ./con2.sh
+Enter source and target file names:emp emp1
+File copied successfully
+[nyk@localhost ~]$ cat emp1
+h               j                       k        
+6               8                       9
+
+@TEST IT IS FILE OR NOT...
+
+[nyk@localhost ~]$ vim test1.sh
+[nyk@localhost ~]$ cat test1.sh
+#!/bin/sh
+#File test commands 
+echo "Enter a file name:"
+read fname
+if [ -f $fname ]
+then
+echo "You indeed entered a file name"
+else 
+echo "What you entered is not a file"
+fi 
+[nyk@localhost ~]$ chmod a+x test1.sh
+[nyk@localhost ~]$ ./test.sh
+bash: ./test.sh: No such file or directory
+[nyk@localhost ~]$ ./test1.sh
+Enter a file name:
+emp
+You indeed entered a file name
+[nyk@localhost ~]$ ./test1.sh
+Enter a file name:
+aws-d
+What you entered is not a file
+
+@WRITE PERMISSION TO A USER OR NOT....
+
+[nyk@localhost ~]$ vim test2.sh
+[nyk@localhost ~]$ chmod a+x test2.sh
+[nyk@localhost ~]$ ./test2.sh
+Enter a file name:
+temp
+No write permission of temp
+[nyk@localhost ~]$ cat test2.sh
+#!/bin/sh
+#Check whether the user has a write permission to a file
+echo "Enter a file name:"
+read fname
+if [ -w $fname ]
+then
+echo "Type matter to append.To stop type ctrl+c"
+cat>>$fname
+else
+echo "No write permission of $fname"
+fi
+:wq!
+
+@TEST WHETHER IT IS FILE OR DIRECTOTY.....
+
+nyk@localhost ~]$ vim test3.sh
+[nyk@localhost ~]$ cat test3.sh
+#!/bin/sh
+#File test example
+echo "Enter a file name:"
+read fname
+if [ -f $fname ]
+then
+echo "$fname is a file"
+elif [ -d $fname ]
+then
+echo "$fname is a directory"
+else
+echo "$fname is not a file or a directory"
+fi
+
+[nyk@localhost ~]$ chmod a+x test3.sh
+[nyk@localhost ~]$ ./test3.sh
+Enter a file name:
+Music
+Music is a directory
+[nyk@localhost ~]$ ./test3.sh
+Enter a file name:
+emp
+emp is a file
+[nyk@localhost ~]$ ./test3.sh
+Enter a file name:
+adv
+adv is not a file or a directory
+[nyk@localhost ~]$ 
+
+
+3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+@#########################################################################################
+
+`````````````````````````````````````````````````````````````````````````````````````````````````
+-------------------------------------------------------------------------------------------------
+`````````````````````````````````````````````````````````````````````````````````````````````````
+`````````````````````````````````````````````````````````````````````````````````````````````````
